@@ -10,9 +10,9 @@ if __name__=="__main__":
     # Options for timelapse
     nimages = 2 #2160
     delay = 0
-    basename = 'image'
+    basename = 'images/image'
     datestring = datetime.now().__format__('%Y-%m-%d_%I%p')
-    timelapsename = '%s.mp4' % (datestring)
+    timelapsename = 'images/%s.mp4' % (datestring)
     # Options for capture
     emin = 10
     emax = 90
@@ -41,12 +41,12 @@ if __name__=="__main__":
         WriteResponseFile(images)
         f.write('Captured HDR Stack.\n')
         # Merge them into an HDR image
-        imgname = '%s_%04d.jpg' % (basename, ii + 1)
+        imgname = 'images/%s_%04d.jpg' % (basename, ii + 1)
         MergeHDRStack(imgname)
         f.write('Merged HDR Stack.\n')
         sleep(delay)
 
     # Create the time lapse
-    call(["avconv", "-r", "10", "-i", "%s" % (basename) + "_%04d.jpg", "-vcodec", "libx264", "-crf",  "20", "-g", "15", timelapsename])
+    call(["avconv", "-r", "10", "-i", "images/%s" % (basename) + "_%04d.jpg", "-vcodec", "libx264", "-crf",  "20", "-g", "15", timelapsename])
     f.write('Wrote video\n.')
     f.write('Current Time: ' + datetime.now().isoformat())

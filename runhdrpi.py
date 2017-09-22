@@ -11,7 +11,7 @@ if __name__=="__main__":
     nimages = 2 #2160
     delay = 0
     basename = 'image'
-    foldername = 'images'
+    foldername = 'images/'
     datestring = datetime.now().__format__('%Y-%m-%d_%I%p')
     timelapsename = '%s.mp4' % (datestring)
     # Options for capture

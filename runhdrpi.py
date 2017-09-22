@@ -57,6 +57,6 @@ if __name__=="__main__":
     # Create the time lapse
     if not path.exists(foldername + '/mp4'):
         makedirs(foldername + '/mp4')
-    call(["avconv", "-r", "10", "-i", 'hdr/' + basename + "_%04d.jpg", "-vcodec", "libx264", "-crf",  "20", "-g", "15", 'mp4/'timelapsename])
+    call(["avconv", "-r", "10", "-i", 'hdr/' + basename + "_%04d.jpg", "-vcodec", "libx264", "-crf",  "20", "-g", "15", 'mp4/' + timelapsename])
     f.write('Wrote video\n.')
     f.write('Current Time: ' + datetime.now().isoformat())

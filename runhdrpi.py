@@ -5,13 +5,17 @@ from mergehdr import *
 from time import sleep
 from datetime import datetime
 from subprocess import call
+from socket import gethostname
 
 if __name__=="__main__":
     # Options for timelapse
     nimages = 2 #2160
     delay = 0
     basename = 'image'
-    foldername = 'images/'
+    foldername = gethostname()
+    if not os.path.exists(foldername):
+    os.makedirs(foldername)
+    
     datestring = datetime.now().__format__('%Y-%m-%d_%I%p')
     timelapsename = '%s.mp4' % (datestring)
     # Options for capture
@@ -38,11 +42,11 @@ if __name__=="__main__":
     
     # Capture our images
     for ii in range(nimages):
-        images = CaptureHDRStack(camera, emin, emax, nexp, foldername)
+        images = CaptureHDRStack(camera, emin, emax, nexp, foldername, ii + 1)
         WriteResponseFile(images)
         f.write('Captured HDR Stack.\n')
         # Merge them into an HDR image
-        imgname = '%s_%04d.jpg' % (basename, ii + 1)
+        imgname = '%s/hdr/%s_%04d.jpg' % (foldername, basename, ii + 1)
         MergeHDRStack(imgname)
         f.write('Merged HDR Stack.\n')
         sleep(delay)

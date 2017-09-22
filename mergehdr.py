@@ -2,7 +2,7 @@
 from subprocess import call
 from datetime import datetime
 
-def MergeHDRStack(image_name=None):
+def MergeHDRStack(image_name=None, foldername):
     """MergeHDRStack(fnames)
         Merge the files contained in fnames using enfuse.
         options are passed to enfuse.
@@ -13,7 +13,7 @@ def MergeHDRStack(image_name=None):
         date = now.__format__('%Y-%m-%d')
         seconds_since_midnight = (now - now.replace(hour=0, minute=0, second=0, microsecond=0)).total_seconds()
         minutes = int(seconds_since_midnight/60)
-        image_name = 'images/%sT%04d.jpg' % (date, minutes)
+        image_name = '%sT%04d.jpg' % (date, minutes)
     
     outfile = '--output=%s' % (image_name)
 

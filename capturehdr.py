@@ -18,7 +18,9 @@ def CaptureHDRStack(camera, exposure_min, exposure_max, nimages, foldername, cou
     fnames = []
     for step in exposures:
         # Set filename based on exposure
-        fname = foldername + '/%de%d.jpg' % (count, step)
+        if not path.exists(foldername + '/exposures'):
+            makedirs(foldername + '/exposures')
+        fname = foldername + '/exposures/%de%d.jpg' % (count, step)
         fnames.append(fname)
         # Set camera properties and capture
         camera.brightness = step

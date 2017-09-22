@@ -63,4 +63,4 @@ if __name__=="__main__":
     f.write('Wrote video\n.')
     f.write('Current Time: ' + datetime.now().isoformat())
 
-    call(['sshpass', '-p', 'hello123', 'scp', '-r', '-o', 'StrictHostKeyChecking=no', 'pi@' + foldername + '.local', '~/' + foldername + '/', 'pi@picam1.local:~']
+    call(['sshpass', '-p', 'hello123', 'scp', '-r', '-o', 'StrictHostKeyChecking=no', 'pi@' + foldername + '.local', '~/' + foldername + '/', 'pi@picam1.local:~'])

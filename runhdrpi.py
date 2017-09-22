@@ -12,7 +12,7 @@ if __name__=="__main__":
     delay = 0
     basename = 'images/image'
     datestring = datetime.now().__format__('%Y-%m-%d_%I%p')
-    timelapsename = 'images/%s.mp4' % (datestring)
+    timelapsename = '%s.mp4' % (datestring)
     # Options for capture
     emin = 10
     emax = 90

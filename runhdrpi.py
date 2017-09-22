@@ -9,7 +9,7 @@ from subprocess import call
 if __name__=="__main__":
     # Options for timelapse
     nimages = 10 #2160
-    delay = 10
+    delay = 0
     basename = 'image'
     datestring = datetime.now().__format__('%Y-%m-%d_%I%p')
     timelapsename = '%s.mp4' % (datestring)

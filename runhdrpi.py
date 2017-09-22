@@ -6,7 +6,7 @@ from time import sleep
 from datetime import datetime
 from subprocess import call
 from socket import gethostname
-from os import (path, makedirs)
+from os import path, makedirs
 
 if __name__=="__main__":
     # Options for timelapse
@@ -48,7 +48,7 @@ if __name__=="__main__":
         f.write('Captured HDR Stack.\n')
         # Merge them into an HDR image
         imgname = '%s/hdr/%s_%04d.jpg' % (foldername, basename, ii + 1)
-        MergeHDRStack(imgname)
+        MergeHDRStack(foldername, imgname)
         f.write('Merged HDR Stack.\n')
         sleep(delay)
 

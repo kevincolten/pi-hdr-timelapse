@@ -2,7 +2,7 @@
 from subprocess import call
 from datetime import datetime
 
-def MergeHDRStack(image_name=None, foldername):
+def MergeHDRStack(foldername, image_name=None):
     """MergeHDRStack(fnames)
         Merge the files contained in fnames using enfuse.
         options are passed to enfuse.

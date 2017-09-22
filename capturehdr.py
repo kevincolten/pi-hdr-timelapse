@@ -1,5 +1,6 @@
 # Python script for capturing hdr images
 import picamera
+from os import path, makedirs
 
 def InitalizeCamera():
     """Initalizes the python pi camera interface."""

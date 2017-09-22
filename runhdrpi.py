@@ -48,7 +48,7 @@ if __name__=="__main__":
         f.write('Captured HDR Stack.\n')
         # Merge them into an HDR image
         if not path.exists(foldername + '/hdr'):
-        makedirs(foldername + '/hdr')
+            makedirs(foldername + '/hdr')
         imgname = '%s/hdr/%s_%04d.jpg' % (foldername, basename, ii + 1)
         MergeHDRStack(foldername, imgname)
         f.write('Merged HDR Stack.\n')

@@ -6,7 +6,7 @@ from time import sleep
 from datetime import datetime
 from subprocess import call
 from socket import gethostname
-from os import path, makedirs
+from os import (path, makedirs)
 
 if __name__=="__main__":
     # Options for timelapse

@@ -13,7 +13,7 @@ def MergeHDRStack(image_name=None):
         date = now.__format__('%Y-%m-%d')
         seconds_since_midnight = (now - now.replace(hour=0, minute=0, second=0, microsecond=0)).total_seconds()
         minutes = int(seconds_since_midnight/60)
-        image_name = '%sT%04d.jpg' % (date, minutes)
+        image_name = 'images/%sT%04d.jpg' % (date, minutes)
     
     outfile = '--output=%s' % (image_name)
 

@@ -18,7 +18,7 @@ def CaptureHDRStack(camera, exposure_min, exposure_max, nimages):
     fnames = []
     for step in exposures:
         # Set filename based on exposure
-        fname = 'e%d.jpg' % (step)
+        fname = 'images/e%d.jpg' % (step)
         fnames.append(fname)
         # Set camera properties and capture
         camera.brightness = step

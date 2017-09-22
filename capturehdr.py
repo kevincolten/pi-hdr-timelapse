@@ -6,7 +6,7 @@ def InitalizeCamera():
     camera = picamera.PiCamera()
     return camera
 
-def CaptureHDRStack(camera, exposure_min, exposure_max, nimages):
+def CaptureHDRStack(camera, exposure_min, exposure_max, nimages, foldername):
     """CaptureHDRStack(exposure_min, exposure_max, nimages)
         captures a set of nimages from the pi's camera with
         exposures ranging from min to max.
@@ -18,7 +18,7 @@ def CaptureHDRStack(camera, exposure_min, exposure_max, nimages):
     fnames = []
     for step in exposures:
         # Set filename based on exposure
-        fname = 'images/e%d.jpg' % (step)
+        fname = foldername + 'e%d.jpg' % (step)
         fnames.append(fname)
         # Set camera properties and capture
         camera.brightness = step

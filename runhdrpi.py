@@ -6,6 +6,7 @@ from time import sleep
 from datetime import datetime
 from subprocess import call
 from socket import gethostname
+from os import path, makedirs
 
 if __name__=="__main__":
     # Options for timelapse
@@ -13,8 +14,8 @@ if __name__=="__main__":
     delay = 0
     basename = 'image'
     foldername = gethostname()
-    if not os.path.exists(foldername):
-    os.makedirs(foldername)
+    if not path.exists(foldername):
+        makedirs(foldername)
     
     datestring = datetime.now().__format__('%Y-%m-%d_%I%p')
     timelapsename = '%s.mp4' % (datestring)

@@ -47,12 +47,16 @@ if __name__=="__main__":
         WriteResponseFile(images)
         f.write('Captured HDR Stack.\n')
         # Merge them into an HDR image
+        if not path.exists(foldername + '/hdr'):
+        makedirs(foldername + '/hdr')
         imgname = '%s/hdr/%s_%04d.jpg' % (foldername, basename, ii + 1)
         MergeHDRStack(foldername, imgname)
         f.write('Merged HDR Stack.\n')
         sleep(delay)
 
     # Create the time lapse
-    call(["avconv", "-r", "10", "-i", "%s" % (basename) + "_%04d.jpg", "-vcodec", "libx264", "-crf",  "20", "-g", "15", timelapsename])
+    if not path.exists(foldername + '/mp4'):
+        makedirs(foldername + '/mp4')
+    call(["avconv", "-r", "10", "-i", 'hdr/' + basename + "_%04d.jpg", "-vcodec", "libx264", "-crf",  "20", "-g", "15", 'mp4/'timelapsename])
     f.write('Wrote video\n.')
     f.write('Current Time: ' + datetime.now().isoformat())

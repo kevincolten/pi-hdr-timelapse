@@ -1,6 +1,7 @@
 # A script for merging the HDR stack using enblend / enfuse
 from subprocess import call
 from datetime import datetime
+from os import path, makedirs
 
 def MergeHDRStack(foldername, image_name=None):
     """MergeHDRStack(fnames)

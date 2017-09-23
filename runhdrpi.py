@@ -13,7 +13,7 @@ if __name__=="__main__":
     if not path.exists('picams'):
         makedirs('picams')
     # Options for timelapse
-    nimages = 2 #2160
+    nimages = 30 #2160
     delay = 0
     basename = 'image'
     foldername = gethostname()

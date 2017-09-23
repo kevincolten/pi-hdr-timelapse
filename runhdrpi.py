@@ -10,6 +10,8 @@ from os import path, makedirs
 from shutil import rmtree
 
 if __name__=="__main__":
+    if not path.exists('picams'):
+        makedirs('picams')
     # Options for timelapse
     nimages = 2 #2160
     delay = 0
@@ -62,7 +64,5 @@ if __name__=="__main__":
     call(["avconv", "-r", "10", "-i", foldername + "/hdr/" + basename + "_%04d.jpg", "-vcodec", "libx264", "-crf",  "20", "-g", "15", foldername + '/mp4/' + timelapsename])
     f.write('Wrote video\n.')
     f.write('Current Time: ' + datetime.now().isoformat())
-    if not path.exists('picams'):
-        makedirs('picams')
 
-    call(['sshpass', '-p', 'hello123', 'scp', '-r', '-o', 'StrictHostKeyChecking=no', 'pi@' + foldername + '.local', '~/' + foldername + '/', 'pi@picam1.local:~/picams/'])
+    call(['sshpass', '-p', 'hello123', 'scp', '-r', '-o', 'StrictHostKeyChecking=no', foldername + '/', 'pi@picam1.local:~/picams'])

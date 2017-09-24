@@ -1,13 +1,13 @@
 from flask import Flask, render_template, jsonify, request
 from json import dumps
 from subprocess import call
-app = Flask(__name__)
+application = Flask(__name__)
 
-@app.route("/")
+@application.route("/")
 def index():
     return render_template('index.html')
 
-@app.route("/run", methods=["GET", "POST"])
+@application.route("/run", methods=["GET", "POST"])
 def run():
     if request.method == "GET":
         return jsonify({"hello": "there"})

@@ -1,0 +1,43 @@
+<!doctype html>
+<head>
+  <title>rPiCams</title>
+</head>
+<body>
+  <h1>rPiCams</h1>
+  <form action="/run" method="POST">
+    <label>Number of Cameras
+      <input type="number" name="cameras" required>
+    </label>
+    <label>Number of Photos
+      <input type="number" name="nimages" value="30" required>
+    </label>
+    <label>Delay between Photos
+      <input type="number" name="delay" value="0" required>
+    </label>
+    <label>Minimum Exposure
+      <input type="number" name="emin" value="10" required>
+    </label>
+    <label>Minimum Exposure
+      <input type="number" name="emax" value="90" required>
+    </label>
+    <label>Number of Exposures
+      <input type="number" name="nexp" value="5" required>
+    </label>
+    <label>Photo Width
+      <input type="number" name="w" value="800" required>
+    </label>
+    <label>Photo Height
+      <input type="number" name="h" value="600" required>
+    </label>
+    <input type="submit" value="Submit">
+  </form>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
+  <script src="http://malsup.github.com/jquery.form.js"></script> 
+  <script> 
+      $(document).ready(function() { 
+          $('form').ajaxForm(function() { 
+              console.log('done')
+          }); 
+      }); 
+  </script> 
+</body>

@@ -8,13 +8,13 @@ from subprocess import call
 from socket import gethostname
 from os import path, makedirs
 from shutil import rmtree
+import sys
 
 if __name__=="__main__":
-    if not path.exists('picams'):
-        makedirs('picams')
+    data = json.loads(argv[1])
     # Options for timelapse
-    nimages = 30 #2160
-    delay = 0
+    nimages = data['nimages']
+    delay = data['delay']
     basename = 'image'
     foldername = gethostname()
     if path.exists(foldername):
@@ -24,11 +24,11 @@ if __name__=="__main__":
     datestring = datetime.now().__format__('%Y-%m-%d_%I%p')
     timelapsename = '%s.mp4' % (datestring)
     # Options for capture
-    emin = 10
-    emax = 90
-    nexp = 5
-    w = 800
-    h = 600
+    emin = data['emin']
+    emax = data['emax']
+    nexp = data['nexp']
+    w = data['w']
+    h = data['h']
     # Options for merging
     # nothing yet
     # Options for ffmpeg
@@ -64,5 +64,7 @@ if __name__=="__main__":
     call(["avconv", "-r", "10", "-i", foldername + "/hdr/" + basename + "_%04d.jpg", "-vcodec", "libx264", "-crf",  "20", "-g", "15", foldername + '/mp4/' + timelapsename])
     f.write('Wrote video\n.')
     f.write('Current Time: ' + datetime.now().isoformat())
-
-    call(['sshpass', '-p', 'hello123', 'scp', '-r', '-o', 'StrictHostKeyChecking=no', foldername + '/', 'pi@picam1.local:~/picams'])
+    if path.exists('static/picams/'):
+        rmtree('static/picams/')
+    makedirs('static/picams/')
+    call(['sshpass', '-p', 'hello123', 'scp', '-r', '-o', 'StrictHostKeyChecking=no', foldername + '/', 'pi@picam1.local:~/pi-hdr-timelapse/static/picams'])

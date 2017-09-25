@@ -16,9 +16,6 @@ def run():
             return jsonify({'complete': true})
         return jsonify({"complete": False})
     if request.method == "POST":
-        if path.exists('static/picams/'):
-            rmtree('static/picams/')
-        makedirs('static/picams/')
         form = request.form.to_dict();
         for num in xrange(int(form['nimages'])):
             call(['sshpass', '-p', 'hello123', 'ssh', '-oStrictHostKeyChecking=no', 'pi@picam' + str(num + 1) + '.local', 'python', '~/pi-hdr-timelapse/runhdrpi.py', dumps(form), '&'], shell=True)

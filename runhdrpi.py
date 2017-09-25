@@ -11,6 +11,9 @@ from shutil import rmtree
 import sys
 
 if __name__=="__main__":
+    if path.exists('static/picams/'):
+        rmtree('static/picams/')
+    makedirs('static/picams/')
     data = json.loads(argv[1])
     # Options for timelapse
     nimages = data['nimages']

@@ -10,16 +10,17 @@ from os import path, makedirs
 from shutil import rmtree
 from json import loads
 from sys import argv
+import ast
 
 if __name__=="__main__":
     if path.exists('~/pi-hdr-timelapse/static/picams/'):
         rmtree('~/pi-hdr-timelapse/static/picams/')
     makedirs('~/pi-hdr-timelapse/static/picams/')
     print(argv[1])
-    data = eval(argv[1])
+    data = ast.literal_eval(argv[1])
     # Options for timelapse
-    nimages = data['nimages']
-    delay = data['delay']
+    nimages = int(data['nimages'])
+    delay = int(data['delay'])
     basename = 'image'
     foldername = gethostname()
     if path.exists(foldername):
@@ -29,11 +30,11 @@ if __name__=="__main__":
     datestring = datetime.now().__format__('%Y-%m-%d_%I%p')
     timelapsename = '%s.mp4' % (datestring)
     # Options for capture
-    emin = data['emin']
-    emax = data['emax']
-    nexp = data['nexp']
-    w = data['w']
-    h = data['h']
+    emin = int(data['emin'])
+    emax = int(data['emax'])
+    nexp = int(data['nexp'])
+    w = int(data['w'])
+    h = int(data['h'])
     # Options for merging
     # nothing yet
     # Options for ffmpeg

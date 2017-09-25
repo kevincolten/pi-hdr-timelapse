@@ -9,7 +9,7 @@ from socket import gethostname
 from os import path, makedirs
 from shutil import rmtree
 from json import loads
-import sys
+from sys import argv
 
 if __name__=="__main__":
     if path.exists('~/pi-hdr-timelapse/static/picams/'):

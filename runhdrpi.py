@@ -15,6 +15,7 @@ if __name__=="__main__":
     if path.exists('~/pi-hdr-timelapse/static/picams/'):
         rmtree('~/pi-hdr-timelapse/static/picams/')
     makedirs('~/pi-hdr-timelapse/static/picams/')
+    print(argv[1])
     data = loads(argv[1])
     # Options for timelapse
     nimages = data['nimages']

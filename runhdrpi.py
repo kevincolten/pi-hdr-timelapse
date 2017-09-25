@@ -16,7 +16,7 @@ if __name__=="__main__":
         rmtree('~/pi-hdr-timelapse/static/picams/')
     makedirs('~/pi-hdr-timelapse/static/picams/')
     print(argv[1])
-    data = loads(argv[1])
+    data = eval(argv[1])
     # Options for timelapse
     nimages = data['nimages']
     delay = data['delay']

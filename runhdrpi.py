@@ -8,13 +8,14 @@ from subprocess import call
 from socket import gethostname
 from os import path, makedirs
 from shutil import rmtree
+from json import loads
 import sys
 
 if __name__=="__main__":
-    if path.exists('static/picams/'):
-        rmtree('static/picams/')
-    makedirs('static/picams/')
-    data = json.loads(argv[1])
+    if path.exists('~/pi-hdr-timelapse/static/picams/'):
+        rmtree('~/pi-hdr-timelapse/static/picams/')
+    makedirs('~/pi-hdr-timelapse/static/picams/')
+    data = loads(argv[1])
     # Options for timelapse
     nimages = data['nimages']
     delay = data['delay']

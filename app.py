@@ -18,7 +18,7 @@ def run():
     if request.method == "POST":
         form = request.form.to_dict();
         for num in xrange(int(form['nimages'])):
-            cmd = "sshpass -v -p hello123 ssh -oStrictHostKeyChecking=no pi@picam" + str(num + 1) + ".local 'python ~/pi-hdr-timelapse/runhdrpi.py '" + str(form).replace('"', r'\"') + "' &> log.txt'"
+            cmd = "sshpass -v -p hello123 ssh -oStrictHostKeyChecking=no pi@picam" + str(num + 1) + ".local 'python ~/pi-hdr-timelapse/runhdrpi.py '''" + json.dumps(form).replace('"', r'\"') + "''' &> log.txt'"
             print(cmd)
             call([cmd], shell=True)
         return jsonify({"request": form })

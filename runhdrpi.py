@@ -23,9 +23,9 @@ if __name__=="__main__":
     if path.exists(foldername):
         rmtree(foldername)
     makedirs(foldername)
-    if path.exists('picams/' + foldername):
-        rmtree('picams/' + foldername)
-    makedirs('picams/' + foldername)
+    if path.exists('picams/'):
+        rmtree('picams/')
+    makedirs('picams/')
     
     datestring = datetime.now().__format__('%Y-%m-%d_%I%p')
     timelapsename = '%s.mp4' % (datestring)
@@ -67,9 +67,9 @@ if __name__=="__main__":
     # Create the time lapse
     if not path.exists(foldername + '/mp4'):
         makedirs(foldername + '/mp4')
-    call(["avconv", "-r", "10", "-i", foldername + "/hdr/" + basename + "_%04d.jpg", "-vcodec", "libx264", "-crf",  "20", "-g", "15", foldername + '/mp4/' + timelapsename])
+    call(["avconv", "-r", "10", "-i", foldername + "/hdr/" + basename + "_%04d.jpg", "-vcodec", "libx264", "-crf",  "20", "-g", "15", foldername + '/mp4/' + timelapsename], shell=True)
     f.write('Wrote video\n.')
     f.write('Current Time: ' + datetime.now().isoformat())
-    cmd = 'sshpass -p hello123 scp -r -o StrictHostKeyChecking=no /home/pi/' + foldername + ' pi@picam1.local:~/'
+    cmd = 'sshpass -p hello123 scp -r -o StrictHostKeyChecking=no /home/pi/' + foldername + ' pi@picam1.local:~/picams'
     print(cmd)
-    call([cmd])
+    call([cmd], shell=True)

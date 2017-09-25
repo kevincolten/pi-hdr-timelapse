@@ -16,7 +16,7 @@ def run():
     if request.method == "POST":
         form = request.form.to_dict();
         for num in xrange(int(form['nimages'])):
-            folder = '~/pi-hdr-timelapse/static/picams/picam' + str{num + 1)
+            folder = '~/pi-hdr-timelapse/static/picams/picam' + str(num + 1)
             if path.exists(folder):
                 rmtree(folder)
             makedirs(folder)

@@ -16,10 +16,6 @@ def run():
     if request.method == "POST":
         form = request.form.to_dict();
         for num in xrange(int(form['nimages'])):
-            folder = '~/pi-hdr-timelapse/static/picams/picam' + str(num + 1)
-            if path.exists(folder):
-                rmtree(folder)
-            makedirs(folder)
             cmd = "sshpass -v -p hello123 ssh -oStrictHostKeyChecking=no pi@picam" + str(num + 1) + ".local 'python" + ' ~/pi-hdr-timelapse/runhdrpi.py """' + dumps(form).replace('"', r'\"') + '""" &> ' + "log.txt'"
             print(cmd)
             call([cmd], shell=True)

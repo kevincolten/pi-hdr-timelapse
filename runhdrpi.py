@@ -13,9 +13,6 @@ from sys import argv
 import ast
 
 if __name__=="__main__":
-    if path.exists('~/pi-hdr-timelapse/static/picams/'):
-        rmtree('~/pi-hdr-timelapse/static/picams/')
-    makedirs('~/pi-hdr-timelapse/static/picams/')
     print(argv[1])
     data = ast.literal_eval(argv[1])
     # Options for timelapse
@@ -26,6 +23,9 @@ if __name__=="__main__":
     if path.exists(foldername):
         rmtree(foldername)
     makedirs(foldername)
+    if path.exists('picams/' + foldername):
+        rmtree('picams/' + foldername)
+    makedirs('picams/' + foldername)
     
     datestring = datetime.now().__format__('%Y-%m-%d_%I%p')
     timelapsename = '%s.mp4' % (datestring)
@@ -70,4 +70,4 @@ if __name__=="__main__":
     call(["avconv", "-r", "10", "-i", foldername + "/hdr/" + basename + "_%04d.jpg", "-vcodec", "libx264", "-crf",  "20", "-g", "15", foldername + '/mp4/' + timelapsename])
     f.write('Wrote video\n.')
     f.write('Current Time: ' + datetime.now().isoformat())
-    call(['sshpass -p hello123 scp -r -o StrictHostKeyChecking=no ' + foldername + '/ pi@picam1.local:~/pi-hdr-timelapse/static/picams/' + foldername + '/'])
+    call(['sshpass -p hello123 scp -r -o StrictHostKeyChecking=no ' + foldername + '/ pi@picam1.local:~/picams/' + foldername + '/'])

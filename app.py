@@ -1,6 +1,8 @@
 from flask import Flask, render_template, jsonify, request
 from json import dumps
 from subprocess import call
+from os import path, makedirs
+from shutil import rmtree
 application = Flask(__name__)
 
 @application.route("/")
@@ -10,8 +12,13 @@ def index():
 @application.route("/run", methods=["GET", "POST"])
 def run():
     if request.method == "GET":
-        return jsonify({"hello": "there"})
+        if path.exists('static/picams/'):
+            return jsonify({'complete': true})
+        return jsonify({"complete": False})
     if request.method == "POST":
+        if path.exists('static/picams/'):
+            rmtree('static/picams/')
+        makedirs('static/picams/')
         form = request.form.to_dict();
         for num in xrange(int(form['nimages'])):
             call(['sshpass', '-p', 'hello123', 'ssh', '-oStrictHostKeyChecking=no', 'pi@picam' + str(num + 1) + '.local', 'python', '~/pi-hdr-timelapse/runhdrpi.py', dumps(form), '&'], shell=True)

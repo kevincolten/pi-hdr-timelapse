@@ -1,7 +1,9 @@
 # rPiCam
 
+1. Download image from https://www.dropbox.com/s/qliv8t5ipl3fwj2/raspbian_backup.img?dl=0
 1. Install image using [Etcher](https://etcher.io/)
-1. SSH into rPi
+1. Put SD card into raspberry pi. You should be able to test it was installed correctly by navigating to http://picam1.local in your browser
+1. SSH into rPi using Terminal
     * ` ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no pi@picam1.local`
     * password `hello123`
 1. Change host name via `sudo nano /etc/hostname` and `sudo nano /etc/hosts` to `picam[num]`

@@ -1,4 +1,4 @@
-#rPiCam
+# rPiCam
 
 1. Install image using [Etcher](https://etcher.io/)
 1. SSH into rPi

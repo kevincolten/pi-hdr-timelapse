@@ -1,9 +1,11 @@
 #rPiCam
+
 1. Install image using [Etcher](https://etcher.io/)
 1. SSH into rPi
-  * ` ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no pi@picam1.local`
+    * ` ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no pi@picam1.local`
+    * password `hello123`
 1. Change host name via `sudo nano /etc/hostname` and `sudo nano /etc/hosts` to `picam[num]`
-  * To Save, type `ctrl-x`, then `y`, then `enter`
+    * To Save, type `ctrl-x`, then `y`, then `enter`
 1. `sudo reboot` and wait a few seconds
 1. You should be able to see the UI at http://picam[num].local
 
